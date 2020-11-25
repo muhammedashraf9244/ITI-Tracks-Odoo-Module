@@ -11,14 +11,14 @@
                         <group>
                             <group string="Basic Info">
                                 <field name="name"/>
-                                <field name="salary"/>
-                                <field name="birthday"/>
+                                <field name="salary" force_save="1"/>
                                 <field name="address"/>
                                 <field name="gender"/>
+                                <field name="birthday" attrs="{'invisible':[('gender','=',False)]}"/>
                                 <field name="skills_ids" widget="many2many_tags"/>
                             </group>
                             <group string="ITI Info">
-                                <field name="track_id"/>
+                                <field name="track_id" domain="[('is_open','=',True)]"/>
                                 <field name="track_capacity"/>
                                 <field name="accepted"/>
                                 <field name="image" widget="image"/>

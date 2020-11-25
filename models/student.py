@@ -15,14 +15,28 @@ class ItiStudent(models.Model):
     skills_ids=fields.Many2many('student.skill')
     gradestudent_ids=fields.One2many('iti.course.line','student_id')
 
-
+    @api.onchange("gender")
+    def _change_salary(self):
+        domain = {'track_id': []}
+        if self.gender=='m':
+            doamin={'track_id':['is_open','=',False]}
+            self.salary=1000
+            return {}
+        elif self.gender=='f':
+            self.salary=500
+        return {
+            'warning': {
+                'title': "Change Salary",
+                'message': 'change salary if change geneder',
+            },
+            'domain':domain
+        }
 
 class ItiCourse(models.Model):
     _name = 'iti.course'
 
     name=fields.Char()
     total_grade=fields.Integer()
-    gradecourse_ids=fields.One2many('iti.course.line','course_id')
 
 class ItiCourseGrade(models.Model):
     _name = 'iti.course.line'
