@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+
+        <!-- Track Form View -->
+        <record id="track_form_view" model="ir.ui.view">
+            <field name="name">form.view.track</field>
+            <field name="model">iti.track</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="capacity"/>
+                            <field name="is_open"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Students">
+                                <field name="student_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="salary"/>
+                                        <field name="birthday"/>
+                                        <field name="address"/>
+                                        <field name="gender"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Track Tree View -->
+        <record id="track_Tree_view" model="ir.ui.view">
+            <field name="name">tree.view.track</field>
+            <field name="model">iti.track</field>
+            <field name="arch" type="xml">
+                <tree>
+                            <field name="name"/>
+                            <field name="capacity"/>
+                            <field name="is_open"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ITI Track Action-->
+        <record id="iti_track_action" model="ir.actions.act_window">
+            <field name="name">Tracks</field>
+            <field name="res_model">iti.track</field>
+        </record>
+        <menuitem id="track_menu" name="Tracks" parent="iti_menu"
+                  action="iti_track_action"/>
+    </data>
+</odoo>
