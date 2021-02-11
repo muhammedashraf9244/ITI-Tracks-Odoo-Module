@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <!--Course Form View-->
+        <record id="iti_course_form" model="ir.ui.view">
+            <field name="name">iti.course.from</field>
+            <field name="model">iti.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="total_grade"/>
+                        </group>
+                        <notebook>
+                            <page string="Tracks">
+                                    <field name="tracks_ids">
+                                        <tree editable="bottom">
+                                            <field name="track_id"/>
+                                            <field name="course_id" invisible="1"/>
+                                            <field name="hours"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Course Tree View -->
+
+        <record id="iti_course_tree" model="ir.ui.view">
+            <field name="name">iti.course.tree</field>
+            <field name="model">iti.course</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="total_grade"/>
+                    <field name="tracks_ids" widget="handle"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Course Action-->
+        <record id="iti_course_action" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">iti.course</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- menutiem courses -->
+        <menuitem id="courses_menu" name="Courses"
+        parent="iti_menu" action="iti_course_action"/>
+    </data>
+</odoo>

@@ -13,7 +13,6 @@
                             <field name="capacity"/>
                             <field name="is_open"/>
                         </group>
-
                         <notebook>
                             <page string="Students">
                                 <field name="student_ids">
@@ -23,6 +22,14 @@
                                         <field name="birthday"/>
                                         <field name="address"/>
                                         <field name="gender"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Courses">
+                                <field name="courses_ids">
+                                    <tree editable="bottom">
+                                        <field name="course_id"/>
+                                        <field name="hours"/>
                                     </tree>
                                 </field>
                             </page>

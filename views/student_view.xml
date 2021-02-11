@@ -11,7 +11,7 @@
                         <group>
                             <group string="Basic Info">
                                 <field name="name"/>
-                                <field name="salary" force_save="1"/>
+                                <field name="salary"/>
                                 <field name="address"/>
                                 <field name="gender"/>
                                 <field name="birthday" attrs="{'invisible':[('gender','=',False)]}"/>
@@ -74,12 +74,8 @@
             <field name="name">Students</field>
             <field name="res_model">iti.student</field>
         </record>
-        <menuitem id="iti_menu" name="ITI Tracks"
-                  web_icon="iti,static/description/iti_logo1.png"
-        />
+        <menuitem id="iti_menu" name="ITI Tracks"/>
         <menuitem id="iti_student" name="Students" parent="iti_menu"
                   action="student_action"/>
-
-
     </data>
 </odoo>

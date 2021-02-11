@@ -3,12 +3,12 @@ from odoo import fields,models,api
 class ItiStudent(models.Model):
     _name='iti.student'
     name=fields.Char(required=True)
-    salary=fields.Float(readonly=True)
+    salary=fields.Float()
     birthday=fields.Date()
     address=fields.Text()
     gender=fields.Selection([('m','Male'),('f','Female')])
     accepted=fields.Boolean()
-    image=fields.Binary()
+    image=fields.Binary()  #image=fields.Image()
     cv=fields.Html()
     track_id=fields.Many2one('iti.track')
     track_capacity=fields.Integer(related='track_id.capacity')
@@ -32,11 +32,7 @@ class ItiStudent(models.Model):
             'domain':domain
         }
 
-class ItiCourse(models.Model):
-    _name = 'iti.course'
 
-    name=fields.Char()
-    total_grade=fields.Integer()
 
 class ItiCourseGrade(models.Model):
     _name = 'iti.course.line'

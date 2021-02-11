@@ -6,13 +6,13 @@
     'company':"ITI",
     'website': 'https://github.com/muhammedashraf9244',
     'version':"13.0.1",
-    'data':[
-
-    ],
     'depends': ['base'],
     'data':[
         "views/student_view.xml",
         "views/track_view.xml",
+        "views/iti_courses.xml",
+        # "security/ir.model.access.csv",
+        # "security/iti_security.xml",
     ],
     'image': [
         'static/description/iti_logo1.png'
