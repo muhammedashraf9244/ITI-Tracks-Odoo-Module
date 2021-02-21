@@ -1,5 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-iti_student_access_user,iti.student.access.user,iti.model_iti_student,,1,1,1,0
-iti_student_access_user,iti.student.access.user,iti.model_iti_student,,1,1,1,0
-iti_student_access_user,iti.student.access.user,iti.model_iti_student,,1,1,1,0
-iti_student_access_manager,iti.student.access.manager,iti.model_iti_student,,1,1,1,0
+iti_student_access_user_id,iti_student_access_user,model_iti_student,iti_user_group,1,1,1,0
+iti_student_skill_access_user_id,iti_student_skill_access_user,model_student_skill,iti_user_group,1,0,0,0
+iti_course_access_user_id,iti_course_access_user,model_iti_course,iti_user_group,1,0,0,0
+iti_course_line_access_user_id,iti_course_line_access_user,model_iti_course_line,iti_user_group,1,0,0,0
+iti_track_access_user_id,iti_track_access_user,model_iti_track,iti_user_group,1,0,0,0
+course_track_line_user_id,course_track_line_access_user,model_course_track_line,iti_user_group,1,0,0,0
+iti_track_access_manger_id,iti_track_access_manger,model_iti_track,iti_manager_group,1,1,1,1
+iti_student_access_manger_id,iti_student_access_manger,model_iti_student,iti_manager_group,1,1,1,1
+iti_course_access_manager_id,iti_course_access_manager,model_iti_course,iti_manager_group,1,1,1,1
+course_track_line_access_manager_id,course_track_line_access_manager,model_course_track_line,iti_manager_group,1,1,1,1
+iti_student_skill_access_manager_id,iti_student_skill_access_manager,model_student_skill,iti_manager_group,1,1,1,1
+hms_patient_access_manger_id,hms_patient_access_manger,hms.model_hms_patient,iti_manager_group,1,1,1,1

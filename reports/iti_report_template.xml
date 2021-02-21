@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <template  id="iti_student_report_template">
+            <t t-call ="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>Students Report</h1>
+                        <table class ="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                       Name
+                                    </th>
+                                    <th>
+                                       Age
+                                    </th>
+                                    <th>
+                                       Salary
+                                   </th>
+                                    <th>
+                                        Address
+                                   </th>
+                                    <th>
+                                        Gender
+                                   </th>
+                                   <th>
+                                        Track
+                                   </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <t t-foreach="docs" t-as="o">
+                                  <tr>
+                                      <td><span t-field="o.name"/></td>
+                                      <td><span t-field="o.age"/></td>
+                                      <td><span t-field="o.salary"/></td>
+                                      <td><span t-field="o.address"/></td>
+                                      <td><span t-field="o.gender"/></td>
+                                      <td><span t-field="o.track_id.name"/></td>
+                                  </tr>
+                               </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

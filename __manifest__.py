@@ -11,8 +11,10 @@
         "views/student_view.xml",
         "views/track_view.xml",
         "views/iti_courses.xml",
-        # "security/ir.model.access.csv",
-        # "security/iti_security.xml",
+        "security/iti_security.xml",
+        "security/ir.model.access.csv",
+        "reports/iti_report_template.xml",
+        "reports/iti_report.xml",
     ],
     'image': [
         'static/description/iti_logo1.png'

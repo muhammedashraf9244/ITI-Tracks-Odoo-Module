@@ -1,5 +1,6 @@
 from odoo import fields,models,api
 from odoo.exceptions import UserError
+from datetime import datetime
 class ItiStudent(models.Model):
     _name='iti.student'
     name=fields.Char(required=True)
@@ -8,6 +9,7 @@ class ItiStudent(models.Model):
     tax = fields.Float(compute="calc_salary")
     net_salary= fields.Float(compute="calc_salary")
     birthday=fields.Date()
+    age = fields.Integer(compute="get_age", store=True)
     address=fields.Text()
     gender=fields.Selection([('m','Male'),('f','Female')])
     accepted=fields.Boolean()
@@ -24,6 +26,9 @@ class ItiStudent(models.Model):
                                , ('rejected','Rejected')],default='applied')
 
 
+    def _get_report_filename(self):
+        return "Students Report" if(len(self) > 1) else f"{self.name} Report".title()
+
     # compute function
     @api.depends("salary")
     def calc_salary(self):
@@ -31,6 +36,17 @@ class ItiStudent(models.Model):
         for record in self:
             record.tax=record.salary * .50
             record.net_salary= record.salary - record.tax
+
+    @api.depends("birthday")
+    def get_age(self):
+        for record in self:
+            if record.birthday:
+                # print(str(record.birthday))
+                # convert date type to datetime
+                birth_date_time = datetime.strptime(str(record.birthday), "%Y-%m-%d")
+                # print(birth_date_time)
+                # calc differance between two dates
+                record.age = abs((birth_date_time - datetime.now()).days) // 365
 
     # sql constraints is useful for small logic
     _sql_constraints = [

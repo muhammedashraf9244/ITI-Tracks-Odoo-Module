@@ -7,18 +7,18 @@
             <field name="model">iti.student</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <!--
+                    <!--
                          for call action
                          <button string="First Interview" type="action" name="iti.iti_track_action"/>
                          replace invisible with states only and not only field of status called state
-                         -->
+                    -->
+                    <header>
                         <button string="First Interview" type="object" name="change_state_first" states="applied"/>
                         <button string="Second Interview" type="object" name="change_state_second" states="first"/>
                         <button string="Passed" states="second" type="object" name="passed_state"/>
                         <button string="Rejected" states="first,second" type="object" name="reject_state" />
-                        <button string="Back to apply" states="rejected,passed" type="object" name="back_to_appy" />
-                        <field name="state" widget="statusbar" statusbar_visible="applied,first,second,passed"/>
+                        <button string="Back to apply" states="rejected,passed" type="object" name="back_to_appy"/>
+                        <field name="state" widget="statusbar" statusbar_visible="applied,first,second,passed,rejected"/>
                     </header>
                     <sheet>
                         <group>
@@ -30,8 +30,8 @@
                                 <field name="net_salary"/>
                                 <field name="address"/>
                                 <field name="gender"/>
-                                <field name="state"/>
                                 <field name="birthday" attrs="{'invisible':[('gender','=',False)]}"/>
+                                <field name="age" attrs="{'invisible':[('gender','=',False)]}"/>
                                 <field name="skills_ids" widget="many2many_tags"/>
                             </group>
                             <group string="ITI Info">
@@ -80,6 +80,7 @@
                             <field name="tax"/>
                             <field name="net_salary"/>
                             <field name="birthday"/>
+                            <field name="age"/>
                             <field name="address"/>
                             <field name="gender"/>
                             <field name="accepted"/>

@@ -1,10 +1,41 @@
 <odoo>
     <data>
-        <record id="iti_user_group" model="res.groups">
-        <field name="name">ITI User Group</field>
+        <!-- ITI Category -->
+        <record id="module_category_iti_category" model="ir.module.category">
+            <field name="name">ITI Category</field>
+<!--            <field name="sequence">7</field>-->
         </record>
-         <record id="iti_manager_group" model="res.groups">
-        <field name="name">ITI Manager Group</field>
+        <!-- ITI User Group -->
+
+        <record id="iti_user_group" model="res.groups">
+            <field name="name">ITI User Group</field>
+            <field name="category_id" ref="module_category_iti_category"/>
+        </record>
+        <!-- ITI Manger Group-->
+        <record id="iti_manager_group" model="res.groups">
+            <field name="name">ITI Manager Group</field>
+            <field name="implied_ids" eval="[(4,ref('iti_user_group'))]"/>
+            <field name="category_id" ref="module_category_iti_category"/>
+        </record>
+        <!--Global Rule-->
+        <record id="see_salary_student" model="ir.rule">
+            <field name="name">See salary student</field>
+            <field name="model_id" ref="model_iti_student"/>
+            <field name="domain_force">[('salary','>=',10)]</field>
+<!--            <field name="groups" eval="[(4,ref('iti_manager_group'))]"/>-->
+        </record>
+
+        <record id="see_all_student_manager" model="ir.rule">
+            <field name="name">See all student manager</field>
+            <field name="model_id" ref="model_iti_student"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('iti_manager_group'))]"/>
+        </record>
+        <record id="see_only_student_user" model="ir.rule">
+            <field name="name">See only student user</field>
+            <field name="model_id" ref="model_iti_student"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('iti_user_group'))]"/>
         </record>
     </data>
 </odoo>
