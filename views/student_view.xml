@@ -43,27 +43,16 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="CV">
-                                <group>
-                                    <field name="cv"/>
-                                </group>
-                            </page>
-                            <page string="Address">
-                                <group>
-                                    <field name="address"/>
-                                </group>
-                            </page>
                             <page string="Grades">
-                                <field name="gradestudent_ids">
-                                    <tree>
-                                        <field name="student_id"/>
+                                <field name="grade_student_ids">
+                                    <tree editable="bottom">
+                                        <field name="student_id" invisible="1"/>
                                         <field name="course_id"/>
                                         <field name="grade"/>
                                     </tree>
                                 </field>
                             </page>
                         </notebook>
-
                     </sheet>
                 </form>
             </field>
