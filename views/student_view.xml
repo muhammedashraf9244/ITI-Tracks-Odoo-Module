@@ -38,6 +38,7 @@
                                 <field name="track_id" domain="[('is_open','=',True)]"/>
                                 <field name="track_capacity"/>
                                 <field name="accepted"/>
+                                <field name="responsible_id"/>
                                 <field name="image" widget="image"/>
                                 <field name="cv"/>
                             </group>
@@ -64,24 +65,45 @@
             <field name="model">iti.student</field>
             <field name="arch" type="xml">
                 <tree>
-                            <field name="name"/>
-                            <field name="salary"/>
-                            <field name="tax"/>
-                            <field name="net_salary"/>
-                            <field name="birthday"/>
-                            <field name="age"/>
-                            <field name="address"/>
-                            <field name="gender"/>
-                            <field name="accepted"/>
-                            <field name="track_id"/>
+                    <field name="name"/>
+                    <field name="salary"/>
+                    <field name="tax"/>
+                    <field name="net_salary"/>
+                    <field name="birthday"/>
+                    <field name="age"/>
+                    <field name="address"/>
+                    <field name="gender"/>
+                    <field name="accepted"/>
+                    <field name="track_id"/>
                 </tree>
             </field>
+        </record>
+
+        <!-- Search View -->
+        <record model="ir.ui.view" id="iti_student_search_view">
+          <field name="name">iti.student.search.view</field>
+          <field name="model">iti.student</field>
+          <field name="arch" type="xml">
+              <search>
+                  <field name="name"/>
+                  <field name="birthday"/>
+                  <field name="responsible_id"/>
+                  <filter name="responsible_students" string="Responsible Students"
+                  domain="[('responsible_id','=',uid)]"/>
+                  <group string="Group By">
+                      <filter name="by_responsible" string="Responsible"
+                      context="{'group_by':'responsible_id'}"/>
+                  </group>
+              </search>
+          </field>
         </record>
 
         <!-- Student Action -->
         <record id="student_action" model="ir.actions.act_window">
             <field name="name">Students</field>
             <field name="res_model">iti.student</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="context" eval="{'search_default_responsible_students':1}"/>
         </record>
         <menuitem id="iti_menu" name="ITI Tracks"/>
         <menuitem id="iti_student" name="Students" parent="iti_menu"

@@ -14,6 +14,7 @@
         "views/student_view.xml",
         "views/track_view.xml",
         "views/iti_courses.xml",
+        "views/iti_partner.xml",
         "reports/iti_report_template.xml",
         "reports/iti_report.xml",
     ],

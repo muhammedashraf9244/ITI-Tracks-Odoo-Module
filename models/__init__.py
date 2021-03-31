@@ -1,1 +1,1 @@
-from . import student, track, student_skill
+from . import student, track, student_skill, iti_partner

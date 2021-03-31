@@ -1,0 +1,63 @@
+<odoo>
+
+    <data>
+        <!--    <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>-->
+        <record id="iti_contact_form_view" model="ir.ui.view">
+            <field name="name">iti.partner.instructor</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page string="Courses">
+                        <group>
+                            <field name="iti_instructor"/>
+                            <field name="courses_ids">
+                                  <tree>
+                                    <field name="name"/>
+                                    <field name="total_grade"/>
+                                  </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  Search view -->
+        <record model="ir.ui.view" id="course_search_view">
+          <field name="name">iti.instructor.search</field>
+          <field name="model">res.partner</field>
+          <field name="arch" type="xml">
+              <search>
+                  <field name="name"/>
+                  <field name="iti_instructor"/>
+                  <filter name="iti_instructors" string="ITI Instructors"
+                  domain="[('iti_instructor','=',True)]"/>
+                  <group string="Group By ITI ">
+                      <filter name="by_iti_instructor" string="ITI Instructors"
+                      context="{'group_by':'iti_instructor'}"/>
+                  </group>
+              </search>
+          </field>
+        </record>
+
+        <!-- Demo data for category -->
+        <record model="res.partner.category" id="teacher1">
+            <field name="name">Teacher / Level 1</field>
+        </record>
+        <record model="res.partner.category" id="teacher2">
+            <field name="name">Teacher / Level 2</field>
+        </record>
+
+        <record id="iti_instructor_action" model="ir.actions.act_window">
+            <field name="name">ITI Instructors</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="context" eval="{'search_default_iti_instructors':1}"/>
+        </record>
+        <menuitem id="iti_instructor_menu" name="ITI Instructors"
+                  parent="iti_menu"/>
+        <menuitem id="contact_menu" name="Instructors"
+                  parent="iti_instructor_menu" action="iti_instructor_action"/>
+    </data>
+</odoo>

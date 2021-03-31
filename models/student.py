@@ -27,6 +27,9 @@ class ItiStudent(models.Model):
                                  , ('passed', 'Passed')
                                  , ('rejected', 'Rejected')], default='applied')
 
+    responsible_id = fields.Many2one('res.users', ondelete='set null', string='Responsible', index=True,
+                                     default=lambda self: self.env.uid)
+
     def _get_report_filename(self):
         return "Students Report" if (len(self) > 1) else f"{self.name} Report".title()
 
